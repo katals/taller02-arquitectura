@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Exponer puerto de Gunicorn
-EXPOSE 8000
+EXPOSE 80
 
 # Iniciar con Gunicorn (carga wsgi:app)
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wsgi:app", "--workers", "2", "--threads", "4", "--timeout", "60"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "wsgi:app", "--workers", "2", "--threads", "4", "--timeout", "60"]

@@ -6,7 +6,7 @@ POKENEAS = [
     "nombre": "Mazorcacho",
     "altura": 1.0,
     "habilidad": "Chuzo dorado",
-    "imagen": "Mazorcacho.png",
+    "imagen": "https://demo-bucket-katals.s3.us-east-1.amazonaws.com/mazorcacho.png",
     "frase": "¡Con maíz no se juega, eso es sagrado!"
   },
   {
@@ -14,7 +14,7 @@ POKENEAS = [
     "nombre": "Papayuki",
     "altura": 1.5,
     "habilidad": "Smoothie curativo",
-    "imagen": "juicioso.jpg",
+    "imagen": "https://demo-bucket-katals.s3.us-east-1.amazonaws.com/juicioso.jpg",
     "frase": "Solo amor, solo nacional."
   },
   {
@@ -22,7 +22,7 @@ POKENEAS = [
     "nombre": "Guacamayo",
     "altura": 1.8,
     "habilidad": "Ala tropical",
-    "imagen": "nosepai.jpg",
+    "imagen": "https://demo-bucket-katals.s3.us-east-1.amazonaws.com/nosepai.jpg",
     "frase": "Vuela bajo, pero pica alto."
   },
   {
@@ -38,7 +38,7 @@ POKENEAS = [
     "nombre": "Cafetín",
     "altura": 1.2,
     "habilidad": "Carga matutina",
-    "imagen": "Cafetín.png",
+    "imagen": "yasuri.jpg",
     "frase": "Sin tinto, ni el alma responde."
   },
   {
