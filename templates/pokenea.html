@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pokeneas - {{ nombre }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .card {
+      max-width: 400px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .data-card {
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+
+    .data-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 { 
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle { 
+      color: #718096; 
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .img-wrap {
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      background: #f8f9fa;
+      border-radius: 10px; 
+      padding: 1.5rem; 
+      margin-bottom: 1rem;
+      border: 1px solid #e9ecef;
+    }
+
+    img { 
+      max-width: 100%; 
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .quote-box {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.5rem;
+      border-left: 4px solid #667eea;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      color: #2d3748;
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .info-box {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 1.5rem;
+      border: 1px solid #e9ecef;
+    }
+
+    .container-info { 
+      font-size: 0.9rem; 
+      color: #495057;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .container-id {
+      color: rgb(0, 0, 0);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .links { 
+      display: flex;
+      justify-content: center;
+    }
+
+    .api-button {
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .api-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      text-decoration: none;
+      color: white;
+    }
+
+    /* Página: título global fuera de las cards */
+    .page-title {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title h1 {
+      font-size: 2.25rem;
+      color: #1f2937;
+      letter-spacing: 0.5px;
+    }
+
+    /* Panel externo para mostrar JSON centrado */
+    .json-panel {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      border: 1px solid #e6eef8;
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: 0 10px 40px rgba(16,24,40,0.05);
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .json-panel .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .json-panel .panel-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 1rem;
+    }
+
+    pre.json-content {
+      background: #0b1220;
+      color: #dbeafe;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow: auto;
+      max-height: 420px;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .json-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-title">
+    <h1>Pokenea Aleatorio</h1>
+  </div>
+  <div class="container">
+    <!-- Card 1: Nombre e Imagen -->
+    <div class="card">
+      <div class="header">
+        <h2>{{ nombre }}</h2>
+        <p class="subtitle">Un Pokenea antioqueño</p>
+      </div>
+
+      <div class="img-wrap">
+        <img src="{{ imagen }}" alt="Imagen de {{ nombre }}">
+      </div>
+    </div>
+
+    <!-- Card 2: Datos adicionales -->
+    <div class="data-card">
+      <div class="data-grid">
+        <!-- Cuadro 1: Frase -->
+        <div class="quote-box">
+          <p class="quote-text">"{{ frase }}"</p>
+        </div>
+
+        <!-- Cuadro 2: Container ID y enlace -->
+        <div class="info-box">
+          <div class="container-info">
+            <strong>Container ID:</strong>
+            <span class="container-id">{{ container_id }}</span>
+          </div>
+
+          <div class="links">
+            <a href="/api/pokenea" class="api-button">Ver JSON aleatorio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
