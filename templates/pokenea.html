@@ -5,280 +5,141 @@
   <title>Pokeneas - {{ nombre }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #f5f7fb;
+      --bg-accent: #e8f3ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #10b981; /* emerald */
+      --primary-2: #3b82f6; /* blue */
+      --ring: rgba(16,185,129,0.35);
+      --shadow: 0 10px 34px rgba(2,6,23,0.08);
+      --radius: 16px;
     }
 
-    body { 
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: white;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(900px 600px at 10% 0%, var(--bg-accent), transparent 60%), var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      gap: 2rem;
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      max-width: 1200px;
+    .nav {
       width: 100%;
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(15,23,42,0.08);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .brand { font-weight: 800; letter-spacing: 0.3px; color: #0f172a; }
+    .brand span { background: linear-gradient(45deg, var(--primary), var(--primary-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-actions { display: flex; gap: 0.5rem; align-items: center; }
+    .btn, .btn-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 0.95rem; border-radius: 999px; font-weight: 700; text-decoration: none;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+    }
+    .btn { background: linear-gradient(90deg, var(--primary), var(--primary-2)); color: #ffffff; box-shadow: 0 8px 26px rgba(16,185,129,0.25); border: none; cursor: pointer; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-link { color: #0f172a; border: 1px solid rgba(15,23,42,0.1); background: #ffffff; }
+    .btn-link:hover { background: #f1f5f9; }
+
+    /* Vertical layout: siempre una columna */
+    .wrap {
+      width: 100%; max-width: 780px; margin: 0 auto; padding: 1.5rem 1rem 2.5rem;
+      display: grid; grid-template-columns: 1fr; gap: 1rem;
     }
 
     .card {
-      max-width: 400px;
-      width: 100%;
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      border: 1px solid #e5e7eb;
-      transition: all 0.3s ease;
+      background: var(--card);
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.1rem;
     }
+    .header { display: flex; flex-direction: column; align-items: center; gap: .35rem; margin-bottom: 0.9rem; text-align: center; }
+    h1 { font-size: 1.75rem; letter-spacing: 0.2px; }
+    .sub { color: var(--muted); font-weight: 600; font-size: .95rem; }
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-    }
+    .img-box { position: relative; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); overflow: hidden; background: #f8fafc; display: flex; align-items: center; justify-content: center; min-height: 260px; }
+    .img-el { max-width: 100%; height: auto; display: block; object-fit: contain; }
+    .skeleton { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.04), rgba(2,6,23,0.02), rgba(2,6,23,0.04)); background-size: 200% 100%; animation: shimmer 1.6s infinite; }
+    @keyframes shimmer { 0%{ background-position: 200% 0;} 100%{ background-position: -200% 0;} }
+    .badge { display: inline-flex; align-items: center; gap: .5rem; background: #f1f5f9; border: 1px solid rgba(15,23,42,0.08); color: #0f172a; padding: .4rem .8rem; border-radius: 999px; font-size: .85rem; }
 
-    .data-card {
-      max-width: 500px;
-      width: 100%;
-      background: white;
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      border: 1px solid #e5e7eb;
-      transition: all 0.3s ease;
-    }
+    .info { display: grid; gap: 0.9rem; }
+    .quote { background: #f8fafc; border: 1px solid rgba(15,23,42,0.08); border-left: 4px solid var(--primary); padding: 1rem; border-radius: 10px; font-style: italic; color: #0f172a; }
+    .actions { display: flex; gap: .6rem; flex-wrap: wrap; }
 
-    .data-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-    }
-
-    .data-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 { 
-      font-size: 2rem;
-      font-weight: 700;
-      color: #2d3748;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitle { 
-      color: #718096; 
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .img-wrap {
-      display: flex; 
-      justify-content: center; 
-      align-items: center;
-      background: #f8f9fa;
-      border-radius: 10px; 
-      padding: 1.5rem; 
-      margin-bottom: 1rem;
-      border: 1px solid #e9ecef;
-    }
-
-    img { 
-      max-width: 100%; 
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .quote-box {
-      background: #f8f9fa;
-      border-radius: 10px;
-      padding: 1.5rem;
-      border-left: 4px solid #667eea;
-      margin-bottom: 1rem;
-    }
-
-    .quote-text {
-      color: #2d3748;
-      font-style: italic;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .info-box {
-      background: #f8f9fa;
-      border-radius: 10px;
-      padding: 1.5rem;
-      border: 1px solid #e9ecef;
-    }
-
-    .container-info { 
-      font-size: 0.9rem; 
-      color: #495057;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .container-id {
-      color: rgb(0, 0, 0);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .links { 
-      display: flex;
-      justify-content: center;
-    }
-
-    .api-button {
-      background: #667eea;
-      color: white;
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    }
-
-    .api-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-      text-decoration: none;
-      color: white;
-    }
-
-    /* Página: título global fuera de las cards */
-    .page-title {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .page-title h1 {
-      font-size: 2.25rem;
-      color: #1f2937;
-      letter-spacing: 0.5px;
-    }
-
-    /* Panel externo para mostrar JSON centrado */
-    .json-panel {
-      width: 100%;
-      max-width: 900px;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
-      border: 1px solid #e6eef8;
-      border-radius: 14px;
-      padding: 1rem;
-      box-shadow: 0 10px 40px rgba(16,24,40,0.05);
-      margin-top: 1rem;
-      text-align: left;
-    }
-
-    .json-panel .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .json-panel .panel-title {
-      font-weight: 700;
-      color: #0f172a;
-      font-size: 1rem;
-    }
-
-    pre.json-content {
-      background: #0b1220;
-      color: #dbeafe;
-      padding: 1rem;
-      border-radius: 8px;
-      overflow: auto;
-      max-height: 420px;
-      white-space: pre-wrap;
-      font-family: 'Courier New', monospace;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .json-actions {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-
-    .secondary-btn {
-      background: transparent;
-      border: 1px solid #cbd5e1;
-      color: #0f172a;
-      padding: 0.4rem 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
+    footer { margin-top: 1rem; text-align: center; color: var(--muted); font-size: .85rem; }
   </style>
 </head>
 <body>
-  <div class="page-title">
-    <h1>Pokenea Aleatorio</h1>
-  </div>
-  <div class="container">
-    <!-- Card 1: Nombre e Imagen -->
-    <div class="card">
+  <nav class="nav">
+    <div class="brand">Pokeneas <span>UI</span></div>
+    <div class="nav-actions">
+      <a href="/api/pokenea" class="btn-link" title="Ver JSON">Ver JSON</a>
+      <button class="btn" id="btn-random" title="Nuevo pokenea">Nuevo</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="card">
       <div class="header">
-        <h2>{{ nombre }}</h2>
-        <p class="subtitle">Un Pokenea antioqueño</p>
+        <h1>{{ nombre }}</h1>
+        <div class="sub">Un Pokenea antioqueño</div>
       </div>
-
-      <div class="img-wrap">
-        <img src="{{ imagen }}" alt="Imagen de {{ nombre }}">
+      <div class="img-box">
+        <div class="skeleton" id="sk"></div>
+        <img class="img-el" id="pokeimg" src="{{ imagen }}" alt="Imagen de {{ nombre }}" />
       </div>
-    </div>
+    </section>
 
-    <!-- Card 2: Datos adicionales -->
-    <div class="data-card">
-      <div class="data-grid">
-        <!-- Cuadro 1: Frase -->
-        <div class="quote-box">
-          <p class="quote-text">"{{ frase }}"</p>
-        </div>
-
-        <!-- Cuadro 2: Container ID y enlace -->
-        <div class="info-box">
-          <div class="container-info">
-            <strong>Container ID:</strong>
-            <span class="container-id">{{ container_id }}</span>
-          </div>
-
-          <div class="links">
-            <a href="/api/pokenea" class="api-button">Ver JSON aleatorio</a>
-          </div>
+    <aside class="card">
+      <div class="info">
+        <div class="quote">“{{ frase }}”</div>
+        <div class="badge">Container ID: <strong>{{ container_id }}</strong></div>
+        <div class="actions">
+          <a href="/api/pokenea" class="btn-link">Ver JSON</a>
+          <button class="btn" id="btn-refresh">Otro pokenea</button>
         </div>
       </div>
-    </div>
-  </div>
+      <footer>Hecho con cariño y arepa</footer>
+    </aside>
+  </main>
+
+  <script>
+    // Botones que recargan un nuevo pokenea (la vista hace random server-side)
+    document.getElementById('btn-random').addEventListener('click', () => window.location.reload());
+    document.getElementById('btn-refresh').addEventListener('click', () => window.location.reload());
+
+    // Esqueleto de carga y fallback si falla la imagen
+    const img = document.getElementById('pokeimg');
+    const sk = document.getElementById('sk');
+    const hideSkeleton = () => sk && (sk.style.display = 'none');
+    img.addEventListener('load', hideSkeleton);
+    img.addEventListener('error', () => {
+      hideSkeleton();
+      // Fallback simple: cuadro con texto si no carga
+      const box = img.parentElement;
+      img.style.display = 'none';
+      const fallback = document.createElement('div');
+      fallback.textContent = 'Imagen no disponible';
+      fallback.style.padding = '2rem';
+      fallback.style.color = '#94a3b8';
+      box.appendChild(fallback);
+    });
+    // Por si ya vino cacheada
+    if (img.complete) hideSkeleton();
+  </script>
 </body>
 </html>

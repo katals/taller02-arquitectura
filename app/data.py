@@ -6,7 +6,7 @@ POKENEAS = [
     "nombre": "Mazorcacho",
     "altura": 1.0,
     "habilidad": "Chuzo dorado",
-    "imagen": "https://demo-bucket-katals.s3.us-east-1.amazonaws.com/mazorcacho.png",
+    "imagen": "mazorcacho.png",
     "frase": "¡Con maíz no se juega, eso es sagrado!"
   },
   {
@@ -14,7 +14,7 @@ POKENEAS = [
     "nombre": "Papayuki",
     "altura": 1.5,
     "habilidad": "Smoothie curativo",
-    "imagen": "https://demo-bucket-katals.s3.us-east-1.amazonaws.com/juicioso.jpg",
+    "imagen": "juicioso.jpg",
     "frase": "Solo amor, solo nacional."
   },
   {
@@ -22,7 +22,7 @@ POKENEAS = [
     "nombre": "Guacamayo",
     "altura": 1.8,
     "habilidad": "Ala tropical",
-    "imagen": "https://demo-bucket-katals.s3.us-east-1.amazonaws.com/nosepai.jpg",
+    "imagen": "nosepai.jpg",
     "frase": "Vuela bajo, pero pica alto."
   },
   {
@@ -30,7 +30,7 @@ POKENEAS = [
     "nombre": "Arepunch",
     "altura": 0.9,
     "habilidad": "Fuerza de maíz",
-    "imagen": "Arepunch.png",
+    "imagen": "fygonorrea.jpg",
     "frase": "¡Calentao y con queso, ese es mi proceso!"
   },
   {
@@ -46,7 +46,7 @@ POKENEAS = [
     "nombre": "Chontaduro",
     "altura": 0.6,
     "habilidad": "Raíz ancestral",
-    "imagen": "Chontaduro.png",
+    "imagen": "soyñero.jpg",
     "frase": "Rojo por fuera, sabroso por dentro... y con sal."
   },
   {
@@ -54,7 +54,7 @@ POKENEAS = [
     "nombre": "Guayabot",
     "altura": 2.3,
     "habilidad": "Pulpa explosiva",
-    "imagen": "Guayabot.png",
+    "imagen": "jj.jpg",
     "frase": "¡Guayaba o muerte!"
   },
   {
@@ -62,7 +62,7 @@ POKENEAS = [
     "nombre": "Mangostro",
     "altura": 1.1,
     "habilidad": "Zumo ácido",
-    "imagen": "Mangostro.png",
+    "imagen": "peguelosocio.jpg",
     "frase": "Dulce con actitud, ácido con razón."
   },
   {
@@ -70,7 +70,7 @@ POKENEAS = [
     "nombre": "Platanito",
     "altura": 0.7,
     "habilidad": "Resbalón cósmico",
-    "imagen": "Platanito.png",
+    "imagen": "zarco.jpg",
     "frase": "Caerse es parte del camino... y del chiste."
   },
   {
@@ -78,7 +78,7 @@ POKENEAS = [
     "nombre": "Luluchu",
     "altura": 1.4,
     "habilidad": "Abrazo andino",
-    "imagen": "Luluchu.png",
+    "imagen": "pablo.jpg",
     "frase": "Más unido que arepa con queso."
   }
 ]
