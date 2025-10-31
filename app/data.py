@@ -22,7 +22,7 @@ POKENEAS = [
     "nombre": "Guacamayo",
     "altura": 1.8,
     "habilidad": "Ala tropical",
-    "imagen": "nosepai.jpg",
+    "imagen": "https://demo-bucket-katals1.s3.us-east-1.amazonaws.com/nosepai.jpg,
     "frase": "Vuela bajo, pero pica alto."
   },
   {
