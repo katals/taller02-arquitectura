@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, request
-from .data import random_pokenea
+from .data import random_pokenea, POKENEAS
 from .utils import get_container_id
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
@@ -11,14 +11,22 @@ def get_random_pokenea_json():
     Si se accede desde navegador (Accept: text/html), renderiza vista HTML.
     Si se accede como API (Accept: application/json), devuelve JSON.
     """
-    p = random_pokenea()
-    payload = {
-        "id": p["id"],
-        "nombre": p["nombre"],
-        "altura": p["altura"],
-        "habilidad": p["habilidad"],
-        "container_id": get_container_id(),
-    }
+    # Soporta modo "all" para devolver todo el dataset como `data`
+    if request.args.get("all"):
+        payload = {
+            "data": POKENEAS,
+            "count": len(POKENEAS),
+            "container_id": get_container_id(),
+        }
+    else:
+        p = random_pokenea()
+        payload = {
+            "id": p["id"],
+            "nombre": p["nombre"],
+            "altura": p["altura"],
+            "habilidad": p["habilidad"],
+            "container_id": get_container_id(),
+        }
     
     # Detectar si es petición desde navegador
     if request.accept_mimetypes.best_match(['text/html', 'application/json']) == 'text/html':

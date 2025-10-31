@@ -141,7 +141,7 @@
 
   <div class="json-panel" aria-live="polite">
     <div class="panel-header">
-      <div class="panel-title">JSON de Diseño</div>
+      <div class="panel-title" id="panel-title">JSON de Diseño</div>
       <div class="json-actions">
         <button class="secondary-btn" id="refresh-json">Recargar</button>
       </div>
@@ -153,17 +153,32 @@
   <a href="/" class="back-link">← Volver al inicio</a>
 
   <script>
-    let currentData = null;
+  let currentData = null;
 
     async function loadJson() {
       const el = document.getElementById('json-content');
       try {
-        const res = await fetch('/api/pokenea', {
+        const res = await fetch('/api/pokenea?all=1', {
           headers: { 'Accept': 'application/json' }
         });
         if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
         currentData = await res.json();
-        el.textContent = JSON.stringify(currentData, null, 2);
+        // Si el payload trae una propiedad `data`, mostrar su contenido completo
+        const toShow = (currentData && typeof currentData === 'object' && 'data' in currentData)
+          ? currentData.data
+          : currentData;
+
+        // Actualizar título con pista del contenido mostrado
+        const title = document.getElementById('panel-title');
+        if (Array.isArray(toShow)) {
+          title.textContent = `Contenido de data (${toShow.length} elementos)`;
+        } else if (toShow && typeof toShow === 'object') {
+          title.textContent = 'Contenido de data (objeto)';
+        } else {
+          title.textContent = 'Respuesta JSON';
+        }
+
+        el.textContent = JSON.stringify(toShow, null, 2);
       } catch (err) {
         el.textContent = 'Error al cargar JSON: ' + err.message;
       }

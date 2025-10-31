@@ -22,5 +22,4 @@ COPY . .
 # Exponer puerto de Gunicorn
 EXPOSE 80
 
-# Iniciar con Gunicorn (carga wsgi:app)
 CMD ["gunicorn", "--bind", "0.0.0.0:80", "wsgi:app", "--workers", "2", "--threads", "4", "--timeout", "60"]

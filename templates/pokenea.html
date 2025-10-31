@@ -2,90 +2,92 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Pokeneas - {{ nombre }}</title>
+  <title>Pokenea API - {{ nombre }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg: #f5f7fb;
-      --bg-accent: #e8f3ff;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --primary: #10b981; /* emerald */
-      --primary-2: #3b82f6; /* blue */
-      --ring: rgba(16,185,129,0.35);
-      --shadow: 0 10px 34px rgba(2,6,23,0.08);
-      --radius: 16px;
+    :root{
+      --poke-red:#ef5350;
+      --poke-dark:#0f172a;
+      --poke-muted:#475569;
+      --poke-bg:#f6f7fb;
+      --card:#ffffff;
+      --ring:rgba(239,83,80,.25);
+      --shadow:0 12px 36px rgba(2,6,23,.08);
+      --radius:16px;
+      --yellow:#ffcb05;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;
+      background: radial-gradient(900px 600px at 0% -10%, #ffe8e8, transparent 55%), var(--poke-bg);
+      color:var(--poke-dark);
+      min-height:100vh; display:flex; flex-direction:column;
+    }
+    .nav{
+      position:sticky; top:0; z-index:10; width:100%;
+      background: var(--poke-red);
+      color:#fff; border-bottom: 3px solid #b71c1c;
+      padding:.85rem 1rem; display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{font-weight:900; letter-spacing:.3px}
+    .brand small{opacity:.9; font-weight:700}
+    .nav-actions{display:flex; gap:.5rem; align-items:center}
+    .btn, .btn-link{
+      display:inline-flex; align-items:center; gap:.5rem; font-weight:800;
+      padding:.55rem .95rem; border-radius:999px; text-decoration:none; cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+    }
+    .btn{background:#1f2937; color:#fff; border:none}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-link{background:#fff; color:#0f172a; border:1px solid rgba(15,23,42,.1)}
+    .btn-link:hover{background:#f1f5f9}
+
+    .wrap{
+      width:100%; max-width:1040px; margin:0 auto; padding:1.25rem 1rem 2.25rem;
+      display:grid; grid-template-columns: 1fr; gap:1rem;
+    }
+    @media (min-width: 920px){
+      .wrap{ grid-template-columns: 1.1fr .9fr; align-items:start }
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(900px 600px at 10% 0%, var(--bg-accent), transparent 60%), var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    .card{
+      background:var(--card); border:1px solid rgba(15,23,42,.08); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:1.1rem;
     }
-
-    .nav {
-      width: 100%;
-      padding: 0.85rem 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(15,23,42,0.08);
-      position: sticky; top: 0; z-index: 10;
+    .header{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.85rem }
+    .title{
+      display:flex; flex-direction:column; gap:.25rem
     }
-    .brand { font-weight: 800; letter-spacing: 0.3px; color: #0f172a; }
-    .brand span { background: linear-gradient(45deg, var(--primary), var(--primary-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav-actions { display: flex; gap: 0.5rem; align-items: center; }
-    .btn, .btn-link {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.55rem 0.95rem; border-radius: 999px; font-weight: 700; text-decoration: none;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+    h1{font-size:2rem}
+    .sub{color:var(--poke-muted); font-weight:650}
+
+    .img-box{
+      position:relative; overflow:hidden; border-radius:12px; border:1px solid rgba(15,23,42,.08);
+      min-height:280px; display:flex; align-items:center; justify-content:center;
+      background:
+        linear-gradient(45deg, rgba(15,23,42,.04) 25%, transparent 25%) -10px 0/20px 20px,
+        linear-gradient(-45deg, rgba(15,23,42,.04) 25%, transparent 25%) -10px 0/20px 20px,
+        linear-gradient(45deg, transparent 75%, rgba(15,23,42,.04) 75%) -10px 0/20px 20px,
+        linear-gradient(-45deg, transparent 75%, rgba(15,23,42,.04) 75%) -10px 0/20px 20px,
+        #f8fafc;
     }
-    .btn { background: linear-gradient(90deg, var(--primary), var(--primary-2)); color: #ffffff; box-shadow: 0 8px 26px rgba(16,185,129,0.25); border: none; cursor: pointer; }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-link { color: #0f172a; border: 1px solid rgba(15,23,42,0.1); background: #ffffff; }
-    .btn-link:hover { background: #f1f5f9; }
+    .img-el{ max-width:100%; height:auto; display:block; object-fit:contain }
+    .skeleton{ position:absolute; inset:0; background:linear-gradient(90deg, rgba(2,6,23,.04), rgba(2,6,23,.02), rgba(2,6,23,.04)); background-size:200% 100%; animation:shimmer 1.6s infinite }
+    @keyframes shimmer{0%{background-position:200% 0} 100%{background-position:-200% 0}}
 
-    /* Vertical layout: siempre una columna */
-    .wrap {
-      width: 100%; max-width: 780px; margin: 0 auto; padding: 1.5rem 1rem 2.5rem;
-      display: grid; grid-template-columns: 1fr; gap: 1rem;
-    }
+    .pill{ display:inline-flex; align-items:center; gap:.5rem; background:#fff7cc; color:#7a5d00; border:1px solid #f8e08a; padding:.35rem .7rem; border-radius:999px; font-size:.85rem; font-weight:800 }
+    .badge{ display:inline-flex; align-items:center; gap:.5rem; background:#f1f5f9; border:1px solid rgba(15,23,42,.08); color:#0f172a; padding:.4rem .8rem; border-radius:999px; font-size:.85rem }
 
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(15,23,42,0.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.1rem;
-    }
-    .header { display: flex; flex-direction: column; align-items: center; gap: .35rem; margin-bottom: 0.9rem; text-align: center; }
-    h1 { font-size: 1.75rem; letter-spacing: 0.2px; }
-    .sub { color: var(--muted); font-weight: 600; font-size: .95rem; }
+    .info{ display:grid; gap:.9rem }
+    .quote{ background:#0b1220; color:#e2e8f0; border-radius:12px; border:1px solid rgba(255,255,255,.06); padding:1rem; font-style:italic }
+    .actions{ display:flex; flex-wrap:wrap; gap:.6rem }
 
-    .img-box { position: relative; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); overflow: hidden; background: #f8fafc; display: flex; align-items: center; justify-content: center; min-height: 260px; }
-    .img-el { max-width: 100%; height: auto; display: block; object-fit: contain; }
-    .skeleton { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,6,23,0.04), rgba(2,6,23,0.02), rgba(2,6,23,0.04)); background-size: 200% 100%; animation: shimmer 1.6s infinite; }
-    @keyframes shimmer { 0%{ background-position: 200% 0;} 100%{ background-position: -200% 0;} }
-    .badge { display: inline-flex; align-items: center; gap: .5rem; background: #f1f5f9; border: 1px solid rgba(15,23,42,0.08); color: #0f172a; padding: .4rem .8rem; border-radius: 999px; font-size: .85rem; }
-
-    .info { display: grid; gap: 0.9rem; }
-    .quote { background: #f8fafc; border: 1px solid rgba(15,23,42,0.08); border-left: 4px solid var(--primary); padding: 1rem; border-radius: 10px; font-style: italic; color: #0f172a; }
-    .actions { display: flex; gap: .6rem; flex-wrap: wrap; }
-
-    footer { margin-top: 1rem; text-align: center; color: var(--muted); font-size: .85rem; }
+    footer{ margin-top:1rem; text-align:center; color:var(--poke-muted); font-size:.85rem }
   </style>
 </head>
 <body>
   <nav class="nav">
-    <div class="brand">Pokeneas <span>UI</span></div>
+    <div class="brand">Pokenea <small>API</small></div>
     <div class="nav-actions">
       <a href="/api/pokenea" class="btn-link" title="Ver JSON">Ver JSON</a>
       <button class="btn" id="btn-random" title="Nuevo pokenea">Nuevo</button>
@@ -95,8 +97,11 @@
   <main class="wrap">
     <section class="card">
       <div class="header">
-        <h1>{{ nombre }}</h1>
-        <div class="sub">Un Pokenea antioqueño</div>
+        <div class="title">
+          <h1>{{ nombre }}</h1>
+          <div class="sub">Un Pokenea antioqueño</div>
+        </div>
+        <span class="pill">Container <strong>#{{ container_id }}</strong></span>
       </div>
       <div class="img-box">
         <div class="skeleton" id="sk"></div>
@@ -107,13 +112,12 @@
     <aside class="card">
       <div class="info">
         <div class="quote">“{{ frase }}”</div>
-        <div class="badge">Container ID: <strong>{{ container_id }}</strong></div>
         <div class="actions">
           <a href="/api/pokenea" class="btn-link">Ver JSON</a>
           <button class="btn" id="btn-refresh">Otro pokenea</button>
         </div>
       </div>
-      <footer>Hecho con cariño y arepa</footer>
+      <footer>Inspirado en el estilo de PokeAPI</footer>
     </aside>
   </main>
 
