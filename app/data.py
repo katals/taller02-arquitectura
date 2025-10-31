@@ -1,86 +1,86 @@
 import random
 
 POKENEAS = [
-    {
-        "id": 1,
-        "nombre": "Neachu",
-        "altura": 0.9,
-        "habilidad": "Doble maíz",
-        "imagen": "Neachu.png",
-        "frase": "Un toquesito o qué mi papa?"
-    },
-    {
-        "id": 2,
-        "nombre": "Bulbasureño",
-        "altura": 1.2,
-        "habilidad": "Vitaminazo",
-        "imagen": "Bulbasureño.png",
-        "frase": "Soy del verde soy feliz, y por el verde me doy puño con el que sea"
-    },
-    {
-        "id": 3,
-        "nombre": "Charmanea",
-        "altura": 1.6,
-        "habilidad": "Desfile floral",
-        "imagen": "Charmanea.png",
-        "frase": "Con guayaba y verraquera se puede"
-    },
-    {
-        "id": 4,
-        "nombre": "Chorizord",
-        "altura": 1.1,
-        "habilidad": "Subida eterna",
-        "imagen": "Chorizord.png",
-        "frase": "Pa arriba es que vamos pues."
-    },
-    {
-        "id": 5,
-        "nombre": "Squirtle",
-        "altura": 1.4,
-        "habilidad": "Aroma vital",
-        "imagen": "Squirtle.png",
-        "frase": "Un tintico y sale"
-    },
-    {
-        "id": 6,
-        "nombre": "Rattota",
-        "altura": 0.7,
-        "habilidad": "Energía paisa",
-        "imagen": "Rattota.png",
-        "frase": "Poropopo, poropopo el que no salte es un rolo mari***"
-    },
-    {
-        "id": 7,
-        "nombre": "Metapai",
-        "altura": 2.1,
-        "habilidad": "Desplazamiento limpio",
-        "imagen": "Metapai.png",
-        "frase": "Jueves de palmas"
-    },
-    {
-        "id": 8,
-        "nombre": "Butterfresa",
-        "altura": 1.0,
-        "habilidad": "Verde urbano",
-        "imagen": "Butterfresa.png",
-        "frase": "2 pa 2 o que?"
-    },
-    {
-        "id": 9,
-        "nombre": "Slowbroki",
-        "altura": 0.8,
-        "habilidad": "Energía renovable",
-        "imagen": "Slowbroki.png",
-        "frase": "El que se asusta se quema"
-    },
-    {
-        "id": 10,
-        "nombre": "Dunsparcero",
-        "altura": 1.3,
-        "habilidad": "Sabor tradicional",
-        "imagen": "Dunsparcero.png",
-        "frase": "Mas que mi hermano eres mi bro."
-    }
+  {
+    "id": 1,
+    "nombre": "Mazorcacho",
+    "altura": 1.0,
+    "habilidad": "Chuzo dorado",
+    "imagen": "Mazorcacho.png",
+    "frase": "¡Con maíz no se juega, eso es sagrado!"
+  },
+  {
+    "id": 2,
+    "nombre": "Papayuki",
+    "altura": 1.5,
+    "habilidad": "Smoothie curativo",
+    "imagen": "juicioso.jpg",
+    "frase": "Solo amor, solo nacional."
+  },
+  {
+    "id": 3,
+    "nombre": "Guacamayo",
+    "altura": 1.8,
+    "habilidad": "Ala tropical",
+    "imagen": "nosepai.jpg",
+    "frase": "Vuela bajo, pero pica alto."
+  },
+  {
+    "id": 4,
+    "nombre": "Arepunch",
+    "altura": 0.9,
+    "habilidad": "Fuerza de maíz",
+    "imagen": "Arepunch.png",
+    "frase": "¡Calentao y con queso, ese es mi proceso!"
+  },
+  {
+    "id": 5,
+    "nombre": "Cafetín",
+    "altura": 1.2,
+    "habilidad": "Carga matutina",
+    "imagen": "Cafetín.png",
+    "frase": "Sin tinto, ni el alma responde."
+  },
+  {
+    "id": 6,
+    "nombre": "Chontaduro",
+    "altura": 0.6,
+    "habilidad": "Raíz ancestral",
+    "imagen": "Chontaduro.png",
+    "frase": "Rojo por fuera, sabroso por dentro... y con sal."
+  },
+  {
+    "id": 7,
+    "nombre": "Guayabot",
+    "altura": 2.3,
+    "habilidad": "Pulpa explosiva",
+    "imagen": "Guayabot.png",
+    "frase": "¡Guayaba o muerte!"
+  },
+  {
+    "id": 8,
+    "nombre": "Mangostro",
+    "altura": 1.1,
+    "habilidad": "Zumo ácido",
+    "imagen": "Mangostro.png",
+    "frase": "Dulce con actitud, ácido con razón."
+  },
+  {
+    "id": 9,
+    "nombre": "Platanito",
+    "altura": 0.7,
+    "habilidad": "Resbalón cósmico",
+    "imagen": "Platanito.png",
+    "frase": "Caerse es parte del camino... y del chiste."
+  },
+  {
+    "id": 10,
+    "nombre": "Luluchu",
+    "altura": 1.4,
+    "habilidad": "Abrazo andino",
+    "imagen": "Luluchu.png",
+    "frase": "Más unido que arepa con queso."
+  }
 ]
 
 def random_pokenea():
