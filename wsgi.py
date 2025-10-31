@@ -4,4 +4,4 @@ app = create_app()
 
 if __name__ == "__main__":
     # Para correr localmente: python wsgi.py
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
